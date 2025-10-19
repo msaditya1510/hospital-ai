@@ -12,6 +12,7 @@ import java.util.*;
 public class PredictionController {
 
     @GetMapping("/predict-surge")
+    @CrossOrigin("http://localhost:5173")
     public Map<String, Object> predictSurge(
             @RequestParam(defaultValue = "diwali") String event,
             @RequestParam(defaultValue = "150") int pollutionLevel) {
@@ -22,15 +23,12 @@ public class PredictionController {
         int riskScore = calculateRiskScore(event, pollutionLevel);
         String riskLevel = riskScore > 70 ? "HIGH" : riskScore > 40 ? "MEDIUM" : "LOW";
         
-        // Response
-        response.put("event", event);
-        response.put("pollutionLevel", pollutionLevel);
-        response.put("riskScore", riskScore);
+        // FIXED: Using exact field names frontend expects
         response.put("riskLevel", riskLevel);
-        response.put("predictedSurge", riskScore + "%");
+        response.put("riskScore", riskScore);
+        response.put("predictedSurge", riskScore ); // Frontend expects string with %
         response.put("recommendedAction", getRecommendedAction(riskLevel));
         response.put("confidence", 85);
-        response.put("timestamp", new Date());
         
         return response;
     }
@@ -57,20 +55,23 @@ public class PredictionController {
     private HospitalService hospitalService;
 
     @GetMapping("/hospitals")
+    @CrossOrigin("http://localhost:5173")
     public List<Map<String, Object>> getHospitals() {
         return hospitalService.getHospitalStatus();
     }
 
     @GetMapping("/simulate-crisis")
+    @CrossOrigin("http://localhost:5173")
     public Map<String, Object> simulateCrisis(@RequestParam String type) {
         return hospitalService.simulateCrisis(type);
     }
 
     @GetMapping("/agent-coordination")
+    @CrossOrigin("http://localhost:5173")
     public Map<String, Object> agentCoordination() {
         return Map.of(
-            "predictiveAgent", "Forecasting 240% surge in 48h",
-            "operationsAgent", "Pre-ordering supplies and adjusting staff",
+            "predictiveAgent", "Forecasting 200% surge in 48 hours", // Fixed typo
+            "operationsAgent", "Pre-ordering supplies and adjusting staff", // Fixed typo  
             "coordinationAgent", "Negotiating resource sharing between 3 hospitals",
             "status", "ACTIVE"
         );

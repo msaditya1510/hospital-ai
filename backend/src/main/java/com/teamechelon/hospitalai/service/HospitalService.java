@@ -6,13 +6,28 @@ import java.util.*;
 @Service
 public class HospitalService {
 
-    public List<Map<String, Object>> getHospitalStatus() {
-        return Arrays.asList(
-            Map.of("name", "AIIMS Delhi", "status", "MODERATE", "capacity", 65, "bedsAvailable", 35),
-            Map.of("name", "Apollo Hospital", "status", "NORMAL", "capacity", 45, "bedsAvailable", 55),
-            Map.of("name", "Max Healthcare", "status", "CRITICAL", "capacity", 92, "bedsAvailable", 8)
-        );
-    }
+	public List<Map<String, Object>> getHospitalStatus() {
+	    return Arrays.asList(
+	        Map.of(
+	            "name", "AIIMS Delhi", 
+	            "status", "MODERATE", 
+	            "totalBeds", 100,        // Frontend expects totalBeds
+	            "availableBeds", 35      // Frontend expects availableBeds
+	        ),
+	        Map.of(
+	            "name", "Apollo Hospital", 
+	            "status", "NORMAL", 
+	            "totalBeds", 120, 
+	            "availableBeds", 55
+	        ),
+	        Map.of(
+	            "name", "Max Healthcare", 
+	            "status", "CRITICAL", 
+	            "totalBeds", 80, 
+	            "availableBeds", 8
+	        )
+	    );
+	}
     
     public Map<String, Object> simulateCrisis(String crisisType) {
         Map<String, Object> simulation = new HashMap<>();
