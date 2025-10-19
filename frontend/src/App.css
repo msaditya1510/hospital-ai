@@ -1,0 +1,18 @@
+@import "tailwindcss";
+/* Add to your App.css */
+/* .risk-badge {
+  @apply inline-block px-3 py-1 rounded-full text-xs font-medium text-white;
+}
+
+.hospital-row-critical { background-color: #fef2f2; }
+.hospital-row-moderate { background-color: #fffbeb; }
+.hospital-row-normal { background-color: #f0fdf4; }
+
+.loading-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+} */
