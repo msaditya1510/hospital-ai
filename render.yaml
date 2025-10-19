@@ -3,7 +3,7 @@ services:
     name: Backend
     rootDir: backend
     runtime: docker
-    dockerfilePath: Dockerfile
+    dockerfilePath: backend/Dockerfile
     plan: free
     envVars:
       - key: SPRING_PROFILES_ACTIVE
