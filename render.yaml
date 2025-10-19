@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: Backend
+    rootDir: Backend
+    runtime: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
