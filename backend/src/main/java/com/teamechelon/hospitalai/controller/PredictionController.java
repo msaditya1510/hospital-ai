@@ -9,10 +9,11 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class PredictionController {
 
     @GetMapping("/predict-surge")
-    @CrossOrigin("http://localhost:5173")
+
     public Map<String, Object> predictSurge(
             @RequestParam(defaultValue = "diwali") String event,
             @RequestParam(defaultValue = "150") int pollutionLevel) {
@@ -55,19 +56,16 @@ public class PredictionController {
     private HospitalService hospitalService;
 
     @GetMapping("/hospitals")
-    @CrossOrigin("http://localhost:5173")
     public List<Map<String, Object>> getHospitals() {
         return hospitalService.getHospitalStatus();
     }
 
     @GetMapping("/simulate-crisis")
-    @CrossOrigin("http://localhost:5173")
     public Map<String, Object> simulateCrisis(@RequestParam String type) {
         return hospitalService.simulateCrisis(type);
     }
 
     @GetMapping("/agent-coordination")
-    @CrossOrigin("http://localhost:5173")
     public Map<String, Object> agentCoordination() {
         return Map.of(
             "predictiveAgent", "Forecasting 200% surge in 48 hours", // Fixed typo
