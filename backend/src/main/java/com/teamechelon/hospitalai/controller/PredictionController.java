@@ -9,7 +9,10 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("*")
+@CrossOrigin(origins = {
+    "http://localhost:5173", 
+    "https://swasthya-ai-six.vercel.app"
+})
 public class PredictionController {
 
     @GetMapping("/predict-surge")
